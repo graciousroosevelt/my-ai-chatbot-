@@ -30,7 +30,7 @@ export default function Home() {
         body: JSON.stringify({ messages: updated.map(m => ({ role: m.role, content: m.content })) }),
       });
       const data = await res.json();
-      const reply = data.content?.map(b => b.text || "").join("") || "Sorry, I couldn't respond.";
+      const reply = data.reply || "Sorry, I couldn't respond.";
       setMessages([...updated, { role: "assistant", content: reply }]);
     } catch {
       setMessages([...updated, { role: "assistant", content: "Something went wrong. Please try again." }]);
@@ -69,7 +69,7 @@ export default function Home() {
             backgroundSize: "200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             animation: "shimmer 3s linear infinite",
           }}>✦ My AI Assistant</h1>
-          <p style={{ margin: "2px 0 0", fontSize: 12, color: "rgba(148,163,184,0.6)" }}>Powered by Claude</p>
+          <p style={{ margin: "2px 0 0", fontSize: 12, color: "rgba(148,163,184,0.6)" }}>Powered by Groq</p>
         </div>
         <button onClick={() => setMessages([{ role: "assistant", content: "Chat cleared! Ask me anything 🚀" }])}
           style={{ background: "rgba(255,255,255,0.06)", color: "rgba(148,163,184,0.8)", padding: "7px 14px", borderRadius: 10, fontSize: 12, border: "1px solid rgba(255,255,255,0.1)" }}>
@@ -133,4 +133,4 @@ export default function Home() {
       <p style={{ color: "rgba(148,163,184,0.35)", fontSize: 11, marginTop: 10 }}>AI can make mistakes. Verify important info.</p>
     </div>
   );
-}
+                                                            }
